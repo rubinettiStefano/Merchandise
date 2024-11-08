@@ -5,17 +5,6 @@ public class Book extends Merchandise
 	 String author;
 	private String genre;
 
-	private Shelf shelf;
-
-	public void setShelf(Shelf shelf)
-	{
-		if (shelf == null || shelf.comics.size()+shelf.books.size()+shelf.newspapers.size() +1 > shelf.getMaxItems())
-			throw new RuntimeException("The shelf does not have enough items");
-
-		this.shelf = shelf;
-		shelf.addBook(this);
-		//Assegnazione id_esterno
-	}
 
 	public void setAuthor(String author)
 	{

@@ -5,17 +5,7 @@ public class Newspaper extends Merchandise
 	private String publisher;
 	private String day;
 
-	Shelf shelf;
 
-	public void setShelf(Shelf shelf)
-	{
-		if (shelf == null || shelf.comics.size()+shelf.books.size()+shelf.newspapers.size() +1 > shelf.getMaxItems())
-			throw new RuntimeException("Invalid shelf");
-
-		this.shelf = shelf;			// Assegnamo il padre al figlio
-		shelf.addNewspaper(this); 	// Assegnamo il figli al padre
-		// assegnare id_esterno
-	}
 
 	public void setPublisher(String publisher)
 	{

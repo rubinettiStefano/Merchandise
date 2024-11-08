@@ -9,43 +9,25 @@ public class Shelf
 
 	int maxItems;
 
-	ArrayList<Comic> 		comics 		= new ArrayList<Comic>();
-	ArrayList<Book> 		books 		= new ArrayList<Book>();
-	ArrayList<Newspaper> 	newspapers 	= new ArrayList<Newspaper>();
+	ArrayList<Merchandise> merchandise = new ArrayList<Merchandise>();
 
 
-	public void addNewspaper(Newspaper newspaper)
+	public void addMerchandise(Merchandise m)
 	{
-		if(newspaper == null )
+		if (m == null || merchandise.size()>=maxItems)
 			throw new RuntimeException("Newspaper not added");
 
-		newspapers.add(newspaper);
+		merchandise.add(m);
 	}
 
-	public void addBook(Book book)
-	{
-		if(book == null)
-			throw new RuntimeException("Book not added");
-
-		books.add(book);
-	}
-
-	public void addComics(Comic comic)
-	{
-		if(comic == null)
-			throw new RuntimeException("Comic not added");
-
-
-		comics.add(comic);
-	}
 
 	public int riskLevel()
 	{
 		double riskLevel = (this.merchWeight() / this.maxWeight()) * 100;
 
-		if(riskLevel < 50)
+		if (riskLevel < 50)
 			return 0;
-		if(riskLevel <= 75)
+		if (riskLevel <= 75)
 			return 1;
 		if (riskLevel <= 100)
 			return 2;
@@ -57,30 +39,47 @@ public class Shelf
 	{
 		double merchWeight = 0.0;
 
-		for(Comic comic : comics)
-			merchWeight += comic.getWeight();
+		for (Merchandise m : merchandise)
+			merchWeight += m.getWeight();
 
-		for(Book book : books)
-			merchWeight += book.getWeight();
-
-		for(Newspaper newspaper : newspapers)
-			merchWeight += newspaper.getWeight();
 
 		return merchWeight;
 	}
 
+	public int getNumberOfComics()
+	{
+		int res = 0;
+
+		for(Merchandise m : merchandise)
+			if(m instanceof Comic)
+				res++;
+
+		return res;
+	}
+
+	public ArrayList<Comic> getComics()
+	{
+		ArrayList<Comic> res =  new ArrayList<>();
+
+		for(Merchandise m : merchandise)
+			if(m instanceof Comic)
+				res.add((Comic)m);
+
+		return res;
+	}
+
 	public double maxWeight()
 	{
-		switch(this.material)
+		switch (this.material)
 		{
 			case "wood":
-				return this.maxItems*0.25;
+				return this.maxItems * 0.25;
 			case "pvc":
-				return this.maxItems*0.75;
+				return this.maxItems * 0.75;
 			case "steel":
-				return this.maxItems*1.5;
+				return this.maxItems * 1.5;
 			case "adamantium":
-				return this.maxItems*50;
+				return this.maxItems * 50;
 			default:
 				throw new RuntimeException("Invalid material");
 		}
@@ -88,7 +87,7 @@ public class Shelf
 
 	public void setId(int id)
 	{
-		if(id < 1)
+		if (id < 1)
 			throw new RuntimeException("ID below 1 is not valid");
 
 		this.id = id;
@@ -96,7 +95,7 @@ public class Shelf
 
 	public void setNumber(int number)
 	{
-		if(number < 1)
+		if (number < 1)
 			throw new RuntimeException("Number below 1 is not valid");
 
 		this.number = number;
@@ -104,7 +103,7 @@ public class Shelf
 
 	public void setMaterial(String material)
 	{
-		if(material == null || "".equals(material))
+		if (material == null || "".equals(material))
 			throw new RuntimeException("Material below 1 is not valid");
 
 		this.material = material;
@@ -112,7 +111,7 @@ public class Shelf
 
 	public void setMaxItems(int maxItems)
 	{
-		if(maxItems < 1)
+		if (maxItems < 1)
 			throw new RuntimeException("Max items below 1 is not valid");
 
 		this.maxItems = maxItems;

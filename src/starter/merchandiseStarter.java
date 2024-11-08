@@ -63,6 +63,8 @@ public class merchandiseStarter
 		b2.setAuthor("Stefano");
 		b2.setGenre("Horror");
 
+		System.out.println("Il numero di comic nel nostro shelf è "+s.getNumberOfComics());
+
 		try
 		{
 			b2.setShelf(s);

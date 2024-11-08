@@ -8,6 +8,24 @@ public class Merchandise
 	double weight;
 	int pageNUmber;
 
+	Shelf shelf;
+
+	public Shelf getShelf()
+	{
+		return shelf;
+	}
+
+	public void setShelf(Shelf shelf)
+	{
+		if (shelf == null )
+			throw new RuntimeException("Invalid shelf");
+
+		this.shelf = shelf;			// Assegnamo il padre al figlio
+		shelf.addMerchandise(this); 	// Assegnamo il figli al padre
+		// assegnare id_esterno
+	}
+
+
 	public Merchandise() {}
 
 	public Merchandise(int id, String title, double price, int weight, int pageNUmber)

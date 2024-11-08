@@ -5,16 +5,6 @@ public class Comic extends Merchandise
 	private int 	volumeNumber;
 	private boolean colored;
 
-	private Shelf shelf;
-
-	public void setShelf(Shelf shelf)
-	{
-		if (shelf == null || shelf.comics.size()+shelf.books.size()+shelf.newspapers.size() +1 > shelf.getMaxItems())
-			throw new RuntimeException("The shelf cannot be null");
-
-		this.shelf = shelf;
-		shelf.addComics(this);
-	}
 
 	public void setVolumeNumber(int volumeNumber)
 	{
